@@ -28,7 +28,26 @@ public class Personatge {
         pAtac = 20;
     }
 
+    public static int punts(int nivellHabilitat) {
+        int punts = 0;
+        for (int i = 0; i < nivellHabilitat; i++) {
+            if(Math.random() % 2 == 0){
+                punts++;
+            }
+        }
+        return punts;
+    }
+
+    public static void mirarNivell(){
+        if (pNivell > 100){
+            nivell += 1;
+            pNivell -= 100;
+            pujarDeNivell();
+        }
+    }
+
     public static void pujarDeNivell(){
+        System.out.println("Pujes de nivell!");
         vidaMax += 10;
         pVida = vidaMax;
         pAtac += 5;
@@ -36,11 +55,13 @@ public class Personatge {
     }
 
     public static void dany(int punts){
+        System.out.println(nomPersonatge + " ha rebut " + punts + " punts de dany!");
         pVida -= punts;
-        if (pVida <= 0) gameOver();
+        if (pVida <= 0) System.out.println(nomPersonatge + "ha mort!!");;
     }
 
     public static void curar(int punts){
+        System.out.println(nomPersonatge + " és cura " + punts + " de vida!");
         pVida += punts;
         if (pVida > vidaMax) pVida = vidaMax;
     }
@@ -48,14 +69,17 @@ public class Personatge {
     //Es tria aleatoriament l'atribut a penalitzar, minim de 1.
     public static void penalitzacio(int punts){
         if (punts % 2 == 0){
+            System.out.println(nomPersonatge + " ha perdut " + punts + " d'atac!");
             pAtac -= punts;
             if (pAtac < 1) pAtac = 1;
         } else {
+            System.out.println(nomPersonatge + " ha perdut " + punts + " de defensa!");
             pDef -= punts;
             if (pDef < 1) pDef = 1;
         }
     }
 
      private static void gameOver() {
+         System.out.println("Fi de la partida");
     }
 }
