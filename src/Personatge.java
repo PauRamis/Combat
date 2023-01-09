@@ -45,10 +45,15 @@ public class Personatge {
         if (pVida > vidaMax) pVida = vidaMax;
     }
 
+    //Es tria aleatoriament l'atribut a penalitzar, minim de 1.
     public static void penalitzacio(int punts){
-        pAtac -= punts;
-        if (pAtac < 1) pAtac = 1;
-
+        if (punts % 2 == 0){
+            pAtac -= punts;
+            if (pAtac < 1) pAtac = 1;
+        } else {
+            pDef -= punts;
+            if (pDef < 1) pDef = 1;
+        }
     }
 
      private static void gameOver() {

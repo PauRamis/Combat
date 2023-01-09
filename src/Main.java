@@ -13,7 +13,7 @@ public class Main {
         if (response == 1) triarPersonatge();
         if (response == 2) return;
         else{
-            System.out.println("Opció no valida, intodueix els valors numerics 1 o 2 ");
+            System.out.println("Opció no valida, intodueix els valors numerics");
             menu();
         }
 
@@ -32,6 +32,6 @@ public class Main {
         System.out.println("Quin es el nom del teu personatge?");
         String nom = scanner.nextLine();
         Personatge.posarNom(nom);
-        System.out.println("Que començi l' aventura de " + nom);
+        System.out.println("Que començi l' aventura de " + nom + "!");
     }
 }
