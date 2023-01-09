@@ -1,10 +1,15 @@
 public class Personatge {
+    static String nomPersonatge;
     static int vidaMax = 100;
     static int pVida = 100;
     static int pAtac = 10;
     static int pDef = 10;
     static int nivell = 1;
     static int pNivell = 0;
+
+    public static void posarNom(String nom){
+        nomPersonatge = nom;
+    }
     
     public static void ferCavaller(){
         vidaMax = 125;
@@ -28,5 +33,24 @@ public class Personatge {
         pVida = vidaMax;
         pAtac += 5;
         pDef += 5;
+    }
+
+    public static void dany(int punts){
+        pVida -= punts;
+        if (pVida <= 0) gameOver();
+    }
+
+    public static void curar(int punts){
+        pVida += punts;
+        if (pVida > vidaMax) pVida = vidaMax;
+    }
+
+    public static void penalitzacio(int punts){
+        pAtac -= punts;
+        if (pAtac < 1) pAtac = 1;
+
+    }
+
+     private static void gameOver() {
     }
 }

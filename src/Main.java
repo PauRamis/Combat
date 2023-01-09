@@ -28,5 +28,10 @@ public class Main {
         if (response == 1) Personatge.ferCavaller();
         if (response == 2) Personatge.ferMag();
         if (response == 3) Personatge.ferCaçador();
+
+        System.out.println("Quin es el nom del teu personatge?");
+        String nom = scanner.nextLine();
+        Personatge.posarNom(nom);
+        System.out.println("Que començi l' aventura de " + nom);
     }
 }
