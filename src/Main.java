@@ -56,7 +56,17 @@ public class Main {
     }
 
     private static boolean combat() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Comença el combat " + i);
+            if (ronda()) return true;
+        }
+        return false;
+    }
 
+    private static boolean ronda() {
+        for (int i = 0; i < 10; i++) {
+
+        }
         return false;
     }
 
