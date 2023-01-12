@@ -91,27 +91,29 @@ public class Main {
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 2) {
-
+                enemic.curar(enemic.punts(enemic.pDef));
             }
             if (accioEnemic == 3) {
-
+                enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 4) {
-
+                enemic.dany(jugador.punts(jugador.pAtac));
             }
         }
         if (accioJugador == 2) {
             if (accioEnemic == 1) {
-
+                jugador.curar(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 2) {
-
+                jugador.curar(jugador.punts(jugador.pDef));
+                enemic.curar(enemic.punts(enemic.pDef));
             }
             if (accioEnemic == 3) {
-
+                jugador.dany(enemic.punts(enemic.pAtac));
+                jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 4) {
-
+                jugador.penalitzacio(enemic.punts(enemic.pAtac));
             }
         }
         if (accioJugador == 3) {
