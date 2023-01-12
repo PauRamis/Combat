@@ -1,14 +1,14 @@
 public class Personatge {
-    static String nomPersonatge;
-    static int vidaMax = 100;
-    static int pVida = 100;
-    static int pAtac = 10;
-    static int pDef = 10;
-    static int nivell = 1;
-    static int pNivell = 0;
+    String nomPersonatge;
+    int vidaMax = 100;
+    int pVida = 100;
+    int pAtac = 10;
+    int pDef = 10;
+    int nivell = 1;
+    int pNivell = 0;
 
-    public static void posarNom(String nom){
-        nomPersonatge = nom;
+    public void posarNom(String nom){
+        this.nomPersonatge = nom;
     }
     
     public void ferCavaller(){

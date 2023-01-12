@@ -87,7 +87,8 @@ public class Main {
     private static void resoldreCombat(int accioJugador, int accioEnemic, Personatge jugador, Personatge enemic) {
         if (accioJugador == 1) {
             if (accioEnemic == 1) {
-                jugador.dany(enemic.punts());
+                jugador.dany(enemic.punts(enemic.pAtac));
+                enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 2) {
 
