@@ -68,6 +68,13 @@ public class Main {
     private static boolean ronda(Personatge jugador, Personatge enemic) {
         for (int i = 0; i < 10; i++) {
             jugador.mostrarEstat();
+            if (jugador.pVida <= 0) {
+                System.out.println("Has mort! Fi de la partida :(");
+                menu();
+            }
+            if (enemic.pVida <= 0) {
+                System.out.println("Enhorabona! Has guanyat!");
+            }
             System.out.println("Quina estrategia vols usar?");
             System.out.println("1- Atac");
             System.out.println("2- Defensa");
@@ -78,7 +85,7 @@ public class Main {
                 System.out.println("Tria una acció valida");
                 ronda(jugador, enemic);
             }
-            int accioEnemic = (int) Math.random()*4;
+            int accioEnemic = (int) ((Math.random() * 4) + 1);
             resoldreCombat(accioJugador, accioEnemic, jugador, enemic);
         }
         return false;
@@ -136,16 +143,17 @@ public class Main {
         }
         if (accioJugador == 4) {
             if (accioEnemic == 1) {
-
+                jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 2) {
-
+                enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 3) {
                 enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 4) {
                 jugador.penalitzacio(enemic.punts(enemic.pDef));
+                enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
         }
     }

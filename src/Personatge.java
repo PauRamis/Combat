@@ -45,6 +45,11 @@ public class Personatge {
         return punts;
     }
 
+    public void guanyarExp(){
+        this.pNivell += 40;
+        mirarNivell();
+    }
+
     public void mirarNivell(){
         if (this.pNivell > 100){
             this.nivell += 1;
@@ -84,10 +89,6 @@ public class Personatge {
             this.pDef -= punts;
             if (this.pDef < 1) this.pDef = 1;
         }
-    }
-
-     private static void gameOver() {
-         System.out.println("Fi de la partida");
     }
 
 }
