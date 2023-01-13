@@ -1,7 +1,9 @@
 import java.util.Scanner;
+import java.util.logging.SocketHandler;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         menu();
     }
@@ -12,7 +14,7 @@ public class Main {
         int response = Integer.parseInt(scanner.nextLine());
         if (response == 1) ferPersonatge();
         else if (response == 2) return;
-        else{
+        else {
             System.out.println("Opció no valida, intodueix els valors numerics");
             menu();
         }
@@ -29,6 +31,7 @@ public class Main {
         if (response == 1) jugador.ferCavaller();
         if (response == 2) jugador.ferMag();
         if (response == 3) jugador.ferCaçador();
+        if (response == 666) jugador.ferAdmin();
 
         System.out.println("Quin es el nom del teu personatge?");
         String nom = scanner.nextLine();
@@ -41,27 +44,20 @@ public class Main {
         System.out.println("En aquest joc has de guanyar 10 combats seguits sense morir.");
         System.out.println("Cada combat sirá de maxim de 10 rondes, si empatau, quedará com nul i jugarás un altre");
         int victories = 0;
+        int combats = 0;
         boolean result; //t= victoria; f= empat; La derrota romp el bucle
-        while (victories < 10){
-            result = combat(jugador);
+        while (victories < 10) {
+            combats ++;
+            System.out.println("Comença el combat " + combats);
 
-            if (result){
+            if (ronda(jugador, ferEnemic())) { //Si guanyam, obtenim Exp i es suma una victoria
                 victories++;
-                jugador.pNivell += 40;
-                jugador.mirarNivell();
+                System.out.println("Victories: " + victories);
+                jugador.guanyarExp();
             }
-            else System.out.println("Has perdut!"); //Aplicar Game Over
-
+            jugador.pVida = jugador.vidaMax; //Curam al jugador després de cada ronda
         }
 
-    }
-
-    private static boolean combat(Personatge jugador) {
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("Comença el combat " + i);
-            if (ronda(jugador, ferEnemic())) return true;
-        }
-        return false;
     }
 
     private static Personatge ferEnemic() {
@@ -86,7 +82,8 @@ public class Main {
     }
 
     private static boolean ronda(Personatge jugador, Personatge enemic) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
+            System.out.println("TURN " + i);
             jugador.mostrarEstat();
             enemic.mostrarEstat();
             if (jugador.pVida <= 0) {
@@ -110,50 +107,62 @@ public class Main {
             int accioEnemic = (int) ((Math.random() * 4) + 1);
             resoldreCombat(accioJugador, accioEnemic, jugador, enemic);
         }
+        System.out.println("Empat! Escapes sense pena ni gloria. Però no tardes en trobar un altre oponent");
         return false;
     }
 
     private static void resoldreCombat(int accioJugador, int accioEnemic, Personatge jugador, Personatge enemic) {
         if (accioJugador == 1) {
             if (accioEnemic == 1) {
+                System.out.println("Vos atacau mutuament");
                 jugador.dany(enemic.punts(enemic.pAtac));
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 2) {
+                System.out.println("L'enemic bloquetja el teu atac i es cura");
                 enemic.curar(enemic.punts(enemic.pDef));
             }
             if (accioEnemic == 3) {
+                System.out.println("Consegueixes ferir-lo");
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 4) {
+                System.out.println("Consegueixes ferir-lo");
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
         }
         if (accioJugador == 2) {
             if (accioEnemic == 1) {
+                System.out.println("Bloquetjes l'atac de l'enemic i et cures");
                 jugador.curar(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 2) {
+                System.out.println("Vos cubriu i aprofitau per curar les ferides obertes");
                 jugador.curar(jugador.punts(jugador.pDef));
                 enemic.curar(enemic.punts(enemic.pDef));
             }
             if (accioEnemic == 3) {
+                System.out.println("L'enemic t'engana i et fa un atac doble");
                 jugador.dany(enemic.punts(enemic.pAtac));
                 jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 4) {
+                System.out.println("L'enemic et fa una maniobra i et penalitza");
                 jugador.penalitzacio(enemic.punts(enemic.pDef));
             }
         }
         if (accioJugador == 3) {
             if (accioEnemic == 1) {
+                System.out.println("L'enemic t'ataca");
                 jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 2) {
+                System.out.println("Enganes a l'enemic i li fas un atac doble");
                 enemic.dany(jugador.punts(jugador.pAtac));
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 3) {
+                System.out.println("Creuau atacs violentament, rebent el doble de dany tots danys");
                 jugador.dany(enemic.punts(enemic.pAtac));
                 jugador.dany(enemic.punts(enemic.pAtac));
                 enemic.dany(jugador.punts(jugador.pAtac));
@@ -165,6 +174,7 @@ public class Main {
         }
         if (accioJugador == 4) {
             if (accioEnemic == 1) {
+                System.out.println("L'enemic t'ataca");
                 jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 2) {
