@@ -38,7 +38,7 @@ public class Main {
     }
 
     private static void joc(Personatge jugador) {
-        System.out.println("Que comenci el joc! Has de guanyar 10 combats seguits sense morir.");
+        System.out.println("En aquest joc has de guanyar 10 combats seguits sense morir.");
         System.out.println("Cada combat sirá de maxim de 10 rondes, si empatau, quedará com nul i jugarás un altre");
         int victories = 0;
         boolean result; //t= victoria; f= empat; La derrota romp el bucle
@@ -57,23 +57,45 @@ public class Main {
     }
 
     private static boolean combat(Personatge jugador) {
-        Personatge enemic = new Personatge();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             System.out.println("Comença el combat " + i);
-            if (ronda(jugador, enemic)) return true;
+            if (ronda(jugador, ferEnemic())) return true;
         }
         return false;
+    }
+
+    private static Personatge ferEnemic() {
+        Personatge enemic = new Personatge();
+        int eClass = (int) ((Math.random() * 3) + 1);
+        if (eClass == 1) {
+            enemic.ferCavaller();
+            System.out.println("Un cavaller oscur et desafafia!");
+            enemic.nomPersonatge = "Cavaller oscur";
+        }
+        if (eClass == 2) {
+            enemic.ferMag();
+            System.out.println("T'enfrentes a un mag maligne!");
+            enemic.nomPersonatge = "Mag maligne";
+        }
+        if (eClass == 3) {
+            enemic.ferCaçador();
+            System.out.println("Un caçador fantasmal t'ataca desde les ombres!");
+            enemic.nomPersonatge = "Caçador fantasmal";
+        }
+        return enemic;
     }
 
     private static boolean ronda(Personatge jugador, Personatge enemic) {
         for (int i = 0; i < 10; i++) {
             jugador.mostrarEstat();
+            enemic.mostrarEstat();
             if (jugador.pVida <= 0) {
                 System.out.println("Has mort! Fi de la partida :(");
                 menu();
             }
             if (enemic.pVida <= 0) {
                 System.out.println("Enhorabona! Has guanyat!");
+                return true;
             }
             System.out.println("Quina estrategia vols usar?");
             System.out.println("1- Atac");

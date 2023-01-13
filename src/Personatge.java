@@ -29,10 +29,13 @@ public class Personatge {
     }
 
     public void mostrarEstat() {
+        System.out.println("");
+        System.out.println(nomPersonatge);
         System.out.println("Vida: " + this.pVida + "/" + this.vidaMax);
         System.out.println("Atac: " + this.pAtac);
         System.out.println("Defensa: " + this.pDef);
         System.out.println("Nivell: " + this.nivell);
+        System.out.println("");
     }
 
     public int punts(int nivellHabilitat) {
