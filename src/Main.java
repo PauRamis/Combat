@@ -113,21 +113,25 @@ public class Main {
                 jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 4) {
-                jugador.penalitzacio(enemic.punts(enemic.pAtac));
+                jugador.penalitzacio(enemic.punts(enemic.pDef));
             }
         }
         if (accioJugador == 3) {
             if (accioEnemic == 1) {
-
+                jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 2) {
-
+                enemic.dany(jugador.punts(jugador.pAtac));
+                enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 3) {
-
+                jugador.dany(enemic.punts(enemic.pAtac));
+                jugador.dany(enemic.punts(enemic.pAtac));
+                enemic.dany(jugador.punts(jugador.pAtac));
+                enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 4) {
-
+                jugador.penalitzacio(enemic.punts(enemic.pDef));
             }
         }
         if (accioJugador == 4) {
@@ -138,10 +142,10 @@ public class Main {
 
             }
             if (accioEnemic == 3) {
-
+                enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 4) {
-
+                jugador.penalitzacio(enemic.punts(enemic.pDef));
             }
         }
     }
