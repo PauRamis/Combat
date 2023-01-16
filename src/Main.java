@@ -178,26 +178,28 @@ public class Main {
                 enemic.dany(jugador.punts(jugador.pAtac));
             }
             if (accioEnemic == 4) {
+                System.out.println("L'enemic fa una maniobra bruta i perds estadistiques");
                 jugador.penalitzacio(enemic.punts(enemic.pDef));
             }
         }
         if (accioJugador == 4) {
             if (accioEnemic == 1) {
-                System.out.println("L'enemic t'ataca");
+                System.out.println("L'enemic t'ataca i t'interromp");
                 jugador.dany(enemic.punts(enemic.pAtac));
             }
             if (accioEnemic == 2) {
+                System.out.println("Fas una maniobra inesperada que sorpren l'enemic");
                 enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 3) {
+                System.out.println("Fas una maniobra inesperada que sorpren l'enemic");
                 enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
             if (accioEnemic == 4) {
+                System.out.println("Vos penalitzau mutuament amb maniobres");
                 jugador.penalitzacio(enemic.punts(enemic.pDef));
                 enemic.penalitzacio(jugador.punts(jugador.pDef));
             }
         }
     }
-
-
 }
