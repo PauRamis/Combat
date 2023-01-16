@@ -29,11 +29,15 @@ public class Main {
 
         int response = Integer.parseInt(scanner.nextLine());
         if (response == 1) jugador.ferCavaller();
-        if (response == 2) jugador.ferMag();
-        if (response == 3) jugador.ferCaçador();
-        if (response == 666) jugador.ferAdmin();
+        else if (response == 2) jugador.ferMag();
+        else if (response == 3) jugador.ferCaçador();
+        else if (response == 666) jugador.ferAdmin();
+        else {
+            System.out.println("Per favor, tria una de les 3 classes jugables");
+            ferPersonatge();
+        }
 
-        System.out.println("Quin es el nom del teu personatge?");
+            System.out.println("Quin es el nom del teu personatge?");
         String nom = scanner.nextLine();
         jugador.posarNom(nom);
         System.out.println("Que començi l' aventura de " + nom + "!");
@@ -65,7 +69,7 @@ public class Main {
         int eClass = (int) ((Math.random() * 3) + 1);
         if (eClass == 1) {
             enemic.ferCavaller();
-            System.out.println("Un cavaller oscur et desafafia!");
+            System.out.println("Un cavaller oscur et desafia!");
             enemic.nomPersonatge = "Cavaller oscur";
         }
         if (eClass == 2) {
@@ -83,17 +87,18 @@ public class Main {
 
     private static boolean ronda(Personatge jugador, Personatge enemic) {
         for (int i = 1; i < 11; i++) {
-            System.out.println("TURN " + i);
-            jugador.mostrarEstat();
-            enemic.mostrarEstat();
             if (jugador.pVida <= 0) {
                 System.out.println("Has mort! Fi de la partida :(");
                 menu();
+                System.exit(0);
             }
             if (enemic.pVida <= 0) {
                 System.out.println("Enhorabona! Has guanyat!");
                 return true;
             }
+            System.out.println("TURN " + i);
+            jugador.mostrarEstat();
+            enemic.mostrarEstat();
             System.out.println("Quina estrategia vols usar?");
             System.out.println("1- Atac");
             System.out.println("2- Defensa");

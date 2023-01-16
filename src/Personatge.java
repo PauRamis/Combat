@@ -2,8 +2,8 @@ public class Personatge {
     String nomPersonatge;
     int vidaMax = 100;
     int pVida = 100;
-    int pAtac = 10;
-    int pDef = 10;
+    int pAtac = 30;
+    int pDef = 30;
     int nivell = 1;
     int pNivell = 0;
 
@@ -14,18 +14,18 @@ public class Personatge {
     public void ferCavaller() {
         this.vidaMax = 125;
         this.pVida = this.vidaMax;
-        this.pDef = 30;
+        this.pDef = 50;
     }
 
     public void ferCaçador() {
         this.vidaMax = 115;
         this.pVida = this.vidaMax;
-        this.pAtac = 30;
+        this.pAtac = 50;
     }
 
     public void ferMag() {
         this.pDef = 15;
-        this.pAtac = 50;
+        this.pAtac = 70;
     }
 
     //Classe secreta, feta principalment per proves
