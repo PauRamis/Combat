@@ -3,7 +3,9 @@ public class Personatge {
     int vidaMax = 100;
     int pVida = 100;
     int pAtac = 30;
+    int pAtacPerduts = 0;
     int pDef = 30;
+    int pDefPerduts = 0;
     int nivell = 1;
     int pNivell = 0;
 
@@ -92,14 +94,19 @@ public class Personatge {
 
     //Es tria aleatoriament l'atribut a penalitzar, minim de 1.
     public void penalitzacio(int punts) {
+        int temp = 0;
         if (punts % 2 == 0) {
             System.out.println(nomPersonatge + " ha perdut " + punts + " d'atac!");
+            temp = this.pAtac;
             this.pAtac -= punts;
             if (this.pAtac < 1) this.pAtac = 1;
+            pAtacPerduts = temp - pAtac;
         } else {
             System.out.println(nomPersonatge + " ha perdut " + punts + " de defensa!");
+            temp = this.pDef;
             this.pDef -= punts;
             if (this.pDef < 1) this.pDef = 1;
+            pDefPerduts = temp - pDef;
         }
     }
 

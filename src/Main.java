@@ -59,7 +59,11 @@ public class Main {
                 System.out.println("Victories: " + victories);
                 jugador.guanyarExp();
             }
-            jugador.pVida = jugador.vidaMax; //Curam al jugador després de cada ronda
+            jugador.pVida = jugador.vidaMax; //Retornem les estadistiques al jugador després de cada ronda
+            jugador.pAtac += jugador.pAtacPerduts;
+            jugador.pAtacPerduts = 0;
+            jugador.pDef += jugador.pDefPerduts;
+            jugador.pDefPerduts = 0;
         }
 
     }
